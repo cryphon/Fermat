@@ -64,3 +64,22 @@ theorem one_mul (m : Unary) : one * m = m := by
       rw [add_succ]
       -- goal: succ(h + zero) = succ(h)
       rw [add_zero]
+
+
+theorem left_distrib (m a b : Unary) : m * (a + b) = m * a + m * b := by
+  induction b with
+  | zero =>
+    -- goal: m * (a + zero) = m * a + m * zero
+    rw [add_zero]
+    -- goal: m * a = m * a + m * zero
+    rw [mul_zero]
+    -- goal: m * a = m * a + zero
+    rw [add_zero]
+  | succ h hd =>
+    rw [add_succ]
+    rw [mul_succ]
+    rw [mul_succ]
+    rw [hd]
+    rw [add_assoc]
+
+
