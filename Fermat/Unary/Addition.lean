@@ -59,3 +59,5 @@ theorem add_assoc (a b c : Unary) : a + b + c = a + (b + c) := by
     rw [hd]
     rfl
 
+theorem add_right_comm (a b c : Unary) : a + b + c = a + c + b := by
+  rw [add_assoc, add_comm b c, ← add_assoc]

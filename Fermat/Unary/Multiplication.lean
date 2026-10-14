@@ -40,11 +40,7 @@ theorem succ_mul (m n: Unary) : succ m * n = m * n + n := by
       -- goal: succ(m * h + h + m) = m * h + m + succ(h)
       rw [add_succ]
       -- goal: succ(m * h + h + m) = succ(m * h + m + h)
-      rw [add_assoc]
-      -- goal: succ(m * h + (h + m)) = succ(m * h + m + h)
-      rw [add_comm h m]
-      -- goal: succ(m * h + (m + h)) = succ(m * h + m + h)
-      rw [← add_assoc]
+      rw [add_right_comm]
 
 theorem mul_one (m : Unary) : m * one = m := by
   rw [one_eq_succ_zero, mul_succ, mul_zero, zero_add]
