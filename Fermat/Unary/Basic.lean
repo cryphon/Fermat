@@ -24,5 +24,6 @@ theorem add_succ (a b : Unary)  : a + succ b = succ (a + b) := rfl
 theorem mul_zero (a : Unary)    : a * zero = zero := rfl
 theorem mul_succ (a b : Unary) : a * succ b = a * b + a := rfl
 theorem one_eq_succ_zero : one = succ zero := rfl
+theorem succ_eq_add_one (a : Unary) : succ a = a + one := rfl
 
 end Unary
