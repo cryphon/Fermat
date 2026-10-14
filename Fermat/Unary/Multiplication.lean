@@ -66,7 +66,7 @@ theorem one_mul (m : Unary) : one * m = m := by
       rw [add_zero]
 
 
-theorem left_distrib (m a b : Unary) : m * (a + b) = m * a + m * b := by
+theorem mul_add (m a b : Unary) : m * (a + b) = m * a + m * b := by
   induction b with
   | zero =>
     -- goal: m * (a + zero) = m * a + m * zero
@@ -76,10 +76,6 @@ theorem left_distrib (m a b : Unary) : m * (a + b) = m * a + m * b := by
     -- goal: m * a = m * a + zero
     rw [add_zero]
   | succ h hd =>
-    rw [add_succ]
-    rw [mul_succ]
-    rw [mul_succ]
-    rw [hd]
-    rw [add_assoc]
+    simp only [add_succ, mul_succ, hd,add_assoc]
 
 
