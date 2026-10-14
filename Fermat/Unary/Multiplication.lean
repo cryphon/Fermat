@@ -61,7 +61,22 @@ theorem mul_one (m : Unary) : m * one = m := by
       -- goal: zero + succ(h) = succ(h)
       rw [zero_add]
 
-
-
-
-
+theorem one_mul (m : Unary) : one * m = m := by
+  induction m with
+    | zero =>
+      -- goal: one * zero = zero
+      rw [one_eq_succ_zero]
+      -- goal: succ(zero) * zero = zero
+      rfl
+    | succ h hd =>
+      -- hd: one * h = h
+      -- goal: one * succ(h) = succ(h)
+      rw [mul_succ]
+      -- goal: one * h + one = succ(h)
+      rw [hd]
+      -- goal: h + one = succ()
+      rw [one_eq_succ_zero]
+      -- goal: h + succ(zero) = succ(h)
+      rw [add_succ]
+      -- goal: succ(h + zero) = succ(h)
+      rw [add_zero]
