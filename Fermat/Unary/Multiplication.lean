@@ -10,9 +10,12 @@ theorem zero_mul (m : Unary) : zero * m = zero  := by
       -- goal: zero * zero = zero
       rw [mul_zero]
     | succ h hd =>
-      -- hd: zero * h = zero
       -- goal: zero * succ(h) = zero
-      rw [zero_mul]
+      rw [mul_succ]
+      -- goal: zero * h + zero = zero
+      rw [hd]
+      -- goal zero + zero = zero
+      rw [add_zero]
 
 
 theorem succ_mul (m n: Unary) : succ m * n = m * n + n := by
