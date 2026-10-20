@@ -78,4 +78,15 @@ theorem mul_add (m a b : Unary) : m * (a + b) = m * a + m * b := by
   | succ h hd =>
     simp only [add_succ, mul_succ, hd,add_assoc]
 
-
+theorem mul_assoc (a b c : Unary) : (a * b) * c = a * (b * c) := by
+  induction c with
+  | zero =>
+    simp only [mul_zero]
+  | succ h hd =>
+    -- hd: a * b * h = a * (b * h)
+    -- goal: a * b * succ(h) = a * (b * succ(h))
+    simp only [mul_succ]
+    -- goal: a * b * h + a * b = a * (b * h + b)
+    rw [hd]
+    -- goal: a * (b * h) + a * b = a * (b * h + b)
+    rw [mul_add]
