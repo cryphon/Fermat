@@ -17,7 +17,6 @@ theorem zero_mul (m : Unary) : zero * m = zero  := by
       -- goal zero + zero = zero
       rw [add_zero]
 
-
 theorem succ_mul (m n: Unary) : succ m * n = m * n + n := by
   induction n with
     | zero =>
@@ -65,7 +64,6 @@ theorem one_mul (m : Unary) : one * m = m := by
       -- goal: succ(h + zero) = succ(h)
       rw [add_zero]
 
-
 theorem mul_add (m a b : Unary) : m * (a + b) = m * a + m * b := by
   induction b with
   | zero =>
@@ -77,6 +75,17 @@ theorem mul_add (m a b : Unary) : m * (a + b) = m * a + m * b := by
     rw [add_zero]
   | succ h hd =>
     simp only [add_succ, mul_succ, hd,add_assoc]
+
+theorem add_mul (a b t : Unary) : (a + b) * t = a * t + b * t := by
+  induction b with
+  | zero =>
+    -- goal: (a + zero) * t = a * t + zero * t
+    rw [add_zero a, zero_mul t, add_zero (a * t)]
+  | succ h hd =>
+    -- hd: (a + b) * h = a * h + b * h
+    -- goal: (a + b) * succ(h) = a * succ(h) + b * succ(h)
+    rw [add_succ a h, succ_mul (a + h), hd, succ_mul h t,
+        add_assoc (a *t) (h * t)]
 
 theorem mul_assoc (a b c : Unary) : (a * b) * c = a * (b * c) := by
   induction c with
@@ -90,3 +99,5 @@ theorem mul_assoc (a b c : Unary) : (a * b) * c = a * (b * c) := by
     rw [hd]
     -- goal: a * (b * h) + a * b = a * (b * h + b)
     rw [mul_add]
+
+
